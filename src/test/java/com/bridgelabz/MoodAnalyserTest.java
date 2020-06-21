@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MoodAnalyserTest {
-
     @Test
     public void givenMessage_WhenSad_ShouldReturnSad(){
       MoodAnalyser moodAnalyser= new MoodAnalyser("sad message");
@@ -21,16 +20,25 @@ public class MoodAnalyserTest {
     }
 
     @Test
-    public void givenInvalidMood_ShouldHandleException () {
-       MoodAnalyser moodAnalyser =new MoodAnalyser("");
-        String mood=null;
-
+    public void  givenNullMessage_shouldInformUser(){
         try {
-            mood=moodAnalyser.analyseMood();
-            Assert.assertEquals("HAPPY",mood);
-        }catch (MoodAnalyserException e){
-            e.printStackTrace();
+            MoodAnalyser moodAnalyser=new MoodAnalyser(null);
+        } catch (MoodAnalyserException ex){
+            Assert.assertEquals(MoodAnalyserException.ExceptionType.ENTERED_NULL,ex.exceptionType);
         }
 
+
     }
+    @Test
+    public void  givenEmptyMessage_shouldInformUser(){
+        try {
+            MoodAnalyser moodAnalyser=new MoodAnalyser("");
+        } catch (MoodAnalyserException ex){
+            Assert.assertEquals(MoodAnalyserException.ExceptionType.ENTERED_EMPTY,ex.exceptionType);
+        }
+
+
+    }
+
+
 }
