@@ -20,4 +20,10 @@ public class MoodAnalyserTest {
         Assert.assertEquals("HAPPY",mood);
     }
 
+    @Test
+    public void givenInvalidMood_ShouldHandleException () {
+       MoodAnalyser moodAnalyser =new MoodAnalyser(null);
+        String moood=moodAnalyser.analyseMood();
+        Assert.assertEquals("HAPPY",moood);
+    }
 }

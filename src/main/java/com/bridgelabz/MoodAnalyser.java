@@ -4,16 +4,23 @@ public class MoodAnalyser {
     String message;
 
     public MoodAnalyser(String message) {
-        this.message=message;
+        this.message = message;
+
     }
 
 
     public String analyseMood() {
-        if(message.contains("sad"))
-            return "SAD";
-        else
+        try {
+            if (message.contains("sad"))
+                return "SAD";
+            else
+                return "HAPPY";
+        } catch (NullPointerException ex) {
             return "HAPPY";
 
-
+        }
     }
 }
+
+
+
