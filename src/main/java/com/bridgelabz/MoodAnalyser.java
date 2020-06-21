@@ -15,9 +15,8 @@ public class MoodAnalyser {
                 return "SAD";
             else
                 return "HAPPY";
-        } catch (NullPointerException ex) {
-            return "HAPPY";
-
+        } catch (MoodAnalyserException ex) {
+            throw new MoodAnalyserException("Please Enter valid message");
         }
     }
 }

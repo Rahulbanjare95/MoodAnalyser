@@ -22,8 +22,15 @@ public class MoodAnalyserTest {
 
     @Test
     public void givenInvalidMood_ShouldHandleException () {
-       MoodAnalyser moodAnalyser =new MoodAnalyser(null);
-        String moood=moodAnalyser.analyseMood();
-        Assert.assertEquals("HAPPY",moood);
+       MoodAnalyser moodAnalyser =new MoodAnalyser("");
+        String mood=null;
+
+        try {
+            mood=moodAnalyser.analyseMood();
+            Assert.assertEquals("HAPPY",mood);
+        }catch (MoodAnalyserException e){
+            e.printStackTrace();
+        }
+
     }
 }
