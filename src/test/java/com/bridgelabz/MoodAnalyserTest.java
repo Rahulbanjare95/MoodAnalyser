@@ -50,5 +50,15 @@ public class MoodAnalyserTest {
             e.printStackTrace();
         }
     }
+    @Test
+    public void givenClassName_WhenImproper_ShoulThrowMoodAnalysisException(){
+        try {
+            MoodAnalyser moodAnalyser=MoodAnalyserFactory.createMoodAnalyser();
+        }catch (MoodAnalyserException e){
+            Assert.assertEquals(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS,e.exceptionType);
+        }
+    }
+
+
 
 }
