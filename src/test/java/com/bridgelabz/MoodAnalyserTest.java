@@ -80,4 +80,26 @@ public class MoodAnalyserTest {
         }
 
     }
+
+    @Test
+    public void givenClassName_WhenImproper_shouldThrowMoodAnalysisException() {
+        try{
+            MoodAnalyser moodAnalyser=MoodAnalyserFactory.createMoodAnalyser("I am Happy");
+        }
+        catch (MoodAnalyserException e){
+            Assert.assertEquals(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS,e.exceptionType);
+        }
+    }
+    @Test
+    public void givenClassConstructor_WhenImproper_shouldThrowMoodAnalysisException() {
+        try{
+            MoodAnalyser moodAnalyser=MoodAnalyserFactory.createMoodAnalyser("I am Happy");
+            String mood=moodAnalyser.analyseMood();
+        }
+        catch (MoodAnalyserException e){
+            Assert.assertEquals(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS,e.exceptionType);
+        }
+    }
+
+
 }
