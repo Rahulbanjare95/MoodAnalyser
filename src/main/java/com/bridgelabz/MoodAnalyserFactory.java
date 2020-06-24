@@ -5,11 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
 
-    public static MoodAnalyser  createMoodAnalyser()  {
+    public static MoodAnalyser  createMoodAnalyser(String message)  {
         try {
             Class<?> moodAnalyserClass = Class.forName("com.bridgelabz.MoodAnalyser");
             Constructor<?> moodConstructor = moodAnalyserClass.getConstructor();
             Object moodObject = moodConstructor.newInstance();
+            Constructor<?> paramconstructor = moodAnalyserClass.getConstructor(String message);
+            Object moodObjectParameter=moodConstructor.newInstance(message);
             return (MoodAnalyser) moodObject;
         } catch (NoSuchMethodException e) {
             e.printStackTrace();

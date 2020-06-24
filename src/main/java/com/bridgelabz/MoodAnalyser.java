@@ -7,8 +7,9 @@ public class MoodAnalyser implements MoodAnalyserInt {
         this.message = message;
     }
 
-    public MoodAnalyser() {
-
+    public String analyseMood(String message) throws MoodAnalyserException {
+        this.message=message;
+        return analyseMood();
     }
 
     public String analyseMood() {
