@@ -38,9 +38,17 @@ public class MoodAnalyserTest {
         }
 
     }
-
     @Test
     public void givenMoodAnalyserClassName_ShouldReturnMoodAnalyserObject() {
-        Assert.assertEquals(new MoodAnalyser(),MoodAnalyserFactory.createMoodAnalyser());
+        MoodAnalyser moodAnalyser=MoodAnalyserFactory.createMoodAnalyser();
+        try {
+            String mood=moodAnalyser.analyseMood();
+            Assert.assertEquals("Happy",mood);
+            //Assert.assertSame(new MoodAnalyser(),MoodAnalyserFactory.createMoodAnalyser());
+            //Assert.assertEquals(new MoodAnalyser(),MoodAnalyserFactory.createMoodAnalyser());
+        }catch (MoodAnalyserException e){
+            e.printStackTrace();
+        }
     }
+
 }
