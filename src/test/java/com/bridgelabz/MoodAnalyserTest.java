@@ -58,6 +58,15 @@ public class MoodAnalyserTest {
             Assert.assertEquals(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS,e.exceptionType);
         }
     }
+    @Test
+    public void givenClass_WhenNoProperConstructor_ShouldThrowMoodAnalysisException() {
+        try {
+            MoodAnalyser moodAnalyser=MoodAnalyserFactory.createMoodAnalyser();
+            moodAnalyser.analyseMood();
+        }catch (MoodAnalyserException e){
+            Assert.assertEquals(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD,e.exceptionType);
+        }
+    }
 
 
 
