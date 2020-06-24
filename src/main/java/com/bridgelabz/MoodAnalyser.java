@@ -1,11 +1,16 @@
 package com.bridgelabz;
 
-public class MoodAnalyser {
+public class MoodAnalyser implements MoodAnalyserInt {
     String message;
 
     public MoodAnalyser(String message) {
         this.message = message;
     }
+
+    public MoodAnalyser() {
+
+    }
+
     public String analyseMood() {
         try {
             if(message.length()==0)
@@ -17,6 +22,12 @@ public class MoodAnalyser {
         } catch (NullPointerException e) {
             throw new MoodAnalyserException("Please enter valid mood message",MoodAnalyserException.ExceptionType.ENTERED_NULL);
         }
+    }
+
+    public boolean equals(MoodAnalyser newobj ){
+        if(this.analyseMood().equals(newobj.analyseMood()))
+            return true;
+        return false;
     }
 }
 

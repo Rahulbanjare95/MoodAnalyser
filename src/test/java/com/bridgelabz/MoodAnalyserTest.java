@@ -30,15 +30,17 @@ public class MoodAnalyserTest {
 
     }
     @Test
-    public void  givenEmptyMessage_shouldInformUser(){
+    public void  givenEmptyMessage_shouldInformUser() {
         try {
-            MoodAnalyser moodAnalyser=new MoodAnalyser("");
-        } catch (MoodAnalyserException ex){
-            Assert.assertEquals(MoodAnalyserException.ExceptionType.ENTERED_EMPTY,ex.exceptionType);
+            MoodAnalyser moodAnalyser = new MoodAnalyser("");
+        } catch (MoodAnalyserException ex) {
+            Assert.assertEquals(MoodAnalyserException.ExceptionType.ENTERED_EMPTY, ex.exceptionType);
         }
-
 
     }
 
-
+    @Test
+    public void givenMoodAnalyserClassName_ShouldReturnMoodAnalyserObject() {
+        Assert.assertEquals(new MoodAnalyser(),MoodAnalyserFactory.createMoodAnalyser());
+    }
 }
