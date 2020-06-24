@@ -1,18 +1,20 @@
 package com.bridgelabz;
 
 public class MoodAnalyser implements MoodAnalyserInt {
-    String message;
+   private String message;
 
     public MoodAnalyser(String message) {
         this.message = message;
     }
+    public  MoodAnalyser(){
 
-    public String analyseMood(String message) throws MoodAnalyserException {
+    }
+    public String analyseMood(String message){
         this.message=message;
         return analyseMood();
     }
 
-    public String analyseMood() {
+    public String analyseMood() throws MoodAnalyserException {
         try {
             if(message.length()==0)
                 throw new MoodAnalyserException("Please don't enter empty string",MoodAnalyserException.ExceptionType.ENTERED_EMPTY);
