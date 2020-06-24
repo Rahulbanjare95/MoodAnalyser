@@ -27,8 +27,9 @@ public class MoodAnalyser implements MoodAnalyserInt {
         }
     }
 
-    public boolean equals(MoodAnalyser newobj ){
-        if(this.analyseMood().equals(newobj.analyseMood()))
+    @Override
+    public boolean equals(Object newobj ) {
+        if (this.message.equals(((MoodAnalyser) newobj).message))
             return true;
         return false;
     }
