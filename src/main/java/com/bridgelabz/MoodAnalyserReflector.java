@@ -3,7 +3,7 @@ package com.bridgelabz;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public class MoodAnalyserFactory {
+public class MoodAnalyserReflector {
     public static MoodAnalyser  createMoodAnalyser(String ... message) throws MoodAnalyserException  {
         try {
             Class<?> moodAnalyserClass = Class.forName("com.bridgelabz.MoodAnalyser");
@@ -39,7 +39,7 @@ public class MoodAnalyserFactory {
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-
         return null;
     }
+
 }
