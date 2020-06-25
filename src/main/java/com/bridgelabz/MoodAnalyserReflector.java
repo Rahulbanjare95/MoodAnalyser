@@ -11,7 +11,7 @@ public class MoodAnalyserReflector {
             Object moodobj;
             if(message.length!=0) {
                 Constructor<?> paramconstructor = moodAnalyserClass.getConstructor(String.class);
-                moodobj = paramconstructor.newInstance(message);
+                moodobj = (MoodAnalyser)paramconstructor.newInstance(message);
             }
             else{
                     Constructor<?> defaultConstructor = moodAnalyserClass.getConstructor();
@@ -52,6 +52,9 @@ public class MoodAnalyserReflector {
                 field.set(moodobject,fieldValue);
             } catch (NoSuchFieldException e) {
                 throw new MoodAnalyserException("No such field", MoodAnalyserException.ExceptionType.NO_SUCH_FIELD);
+            }
+            catch (MoodAnalyserException e){
+                throw new MoodAnalyserException("Entered Null",MoodAnalyserException.ExceptionType.ENTERED_NULL);
             }
             catch (IllegalAccessException e){
                 throw new MoodAnalyserException("Not Accesible",MoodAnalyserException.ExceptionType.NO_ACCESS_GIVEN);

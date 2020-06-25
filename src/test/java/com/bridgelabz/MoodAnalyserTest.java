@@ -130,7 +130,6 @@ public class MoodAnalyserTest {
             Assert.assertEquals(MoodAnalyserException.ExceptionType.NO_SUCH_FIELD,e.exceptionType);
         }
     }
-
     @Test
     public void givenImproper_setField_ShouldThrowException() {
         try{
@@ -139,6 +138,17 @@ public class MoodAnalyserTest {
             Assert.assertEquals("HAPPY",analyseMood);
         }catch (MoodAnalyserException e){
             Assert.assertEquals(MoodAnalyserException.ExceptionType.NO_SUCH_FIELD,e.exceptionType);
+        }
+    }
+
+    @Test
+    public void givenNullMessage_toSetField_shouldThrowException() {
+        try{
+            MoodAnalyser moodAnalyser=MoodAnalyserReflector.setField(MoodAnalyserReflector.createMoodAnalyser("I am Happy"),null,null);
+            MoodAnalyser analyseMood=MoodAnalyserReflector.invokeMethod(MoodAnalyserReflector.createMoodAnalyser("I am happy"),"analyseMood");
+            Assert.assertEquals("HAPPY",analyseMood);
+        }catch (NullPointerException e){
+            e.printStackTrace();
         }
     }
 }
