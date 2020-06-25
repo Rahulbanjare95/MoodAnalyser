@@ -1,6 +1,7 @@
 package com.bridgelabz;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserReflector {
@@ -33,13 +34,29 @@ public class MoodAnalyserReflector {
 
         return null;
     }
-    public static MoodAnalyser invokeMethod(MoodAnalyser moodobject,String methodName) throws NoSuchMethodException {
+    public static MoodAnalyser invokeMethod(MoodAnalyser moodobject,String methodName) throws MoodAnalyserException {
         try {
             return (MoodAnalyser) moodobject.getClass().getMethod(methodName).invoke(moodobject);
-        } catch (IllegalAccessException | InvocationTargetException e) {
+        }catch (NoSuchMethodException e){
+            throw new MoodAnalyserException("No such Method",MoodAnalyserException.ExceptionType.NO_SUCH_METHOD);
+        }
+        catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return null;
     }
-
+    public static MoodAnalyser setField(MoodAnalyser moodobject, String fieldName, String fieldValue)throws MoodAnalyserException{
+            try {
+                Field field=moodobject.getClass().getField(fieldName);
+                field.setAccessible(true);
+                field.set(moodobject,fieldValue);
+            } catch (NoSuchFieldException e) {
+                throw new MoodAnalyserException("No such field", MoodAnalyserException.ExceptionType.NO_SUCH_FIELD);
+            }
+            catch (IllegalAccessException e){
+                throw new MoodAnalyserException("Not Accesible",MoodAnalyserException.ExceptionType.NO_ACCESS_GIVEN);
+            }
+        return moodobject;
+    }
 }
+
