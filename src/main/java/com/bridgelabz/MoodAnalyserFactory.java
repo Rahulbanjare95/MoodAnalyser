@@ -13,8 +13,8 @@ public class MoodAnalyserFactory {
                 moodobj = paramconstructor.newInstance(message);
             }
             else{
-                    Constructor<?> DefaultConstructor = moodAnalyserClass.getDeclaredConstructor();
-                    moodobj= DefaultConstructor.newInstance();
+                    Constructor<?> defaultConstructor = moodAnalyserClass.getConstructor();
+                    moodobj= defaultConstructor.newInstance();
                 }
             return (MoodAnalyser)moodobj;
         } catch (NoSuchMethodException e) {
@@ -28,6 +28,15 @@ public class MoodAnalyserFactory {
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    public static MoodAnalyser invokeMethod(MoodAnalyser moodobject,String methodName) throws NoSuchMethodException {
+        try {
+            return (MoodAnalyser) moodobject.getClass().getMethod(methodName).invoke(moodobject);
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
 
