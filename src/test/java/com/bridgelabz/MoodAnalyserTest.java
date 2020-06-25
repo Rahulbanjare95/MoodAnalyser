@@ -131,9 +131,14 @@ public class MoodAnalyserTest {
         }
     }
 
-
-
-
-
-
+    @Test
+    public void givenImproper_setField_ShouldThrowException() {
+        try{
+            MoodAnalyser moodAnalyser = MoodAnalyserReflector.setField(MoodAnalyserReflector.createMoodAnalyser("I am Happy"), "wrong", "I am Happy");
+            MoodAnalyser analyseMood = MoodAnalyserReflector.invokeMethod(MoodAnalyserReflector.createMoodAnalyser("I am Happy"), "analyseMood");
+            Assert.assertEquals("HAPPY",analyseMood);
+        }catch (MoodAnalyserException e){
+            Assert.assertEquals(MoodAnalyserException.ExceptionType.NO_SUCH_FIELD,e.exceptionType);
+        }
+    }
 }
